@@ -1,5 +1,5 @@
 # BumdesPrototype
 Bumdes Rumpia Prototype
 
-This is the prototype of Android App of Bumdes Rumpia
+This is the prototype Android App of Bumdes Rumpia
 
