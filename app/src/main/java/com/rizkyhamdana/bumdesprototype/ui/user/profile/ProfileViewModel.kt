@@ -1,4 +1,4 @@
-package com.rizkyhamdana.bumdesprototype.ui.notifications
+package com.rizkyhamdana.bumdesprototype.ui.user.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

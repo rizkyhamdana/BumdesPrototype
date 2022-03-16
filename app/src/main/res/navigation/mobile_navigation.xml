@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.rizkyhamdana.bumdesprototype.ui.home.HomeFragment"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.user.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_message"
-        android:name="com.rizkyhamdana.bumdesprototype.ui.dashboard.MessageFragment"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.user.message.MessageFragment"
         android:label="@string/title_messages"
         tools:layout="@layout/fragment_message">
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.rizkyhamdana.bumdesprototype.ui.notifications.ProfileFragment"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.user.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.rizkyhamdana.bumdesprototype.ui.history.HistoryFragment"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.user.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
 

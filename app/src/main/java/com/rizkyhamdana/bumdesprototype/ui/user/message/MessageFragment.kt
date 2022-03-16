@@ -1,4 +1,4 @@
-package com.rizkyhamdana.bumdesprototype.ui.dashboard
+package com.rizkyhamdana.bumdesprototype.ui.user.message
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.rizkyhamdana.bumdesprototype.ui.history
+package com.rizkyhamdana.bumdesprototype.ui.user.history
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
