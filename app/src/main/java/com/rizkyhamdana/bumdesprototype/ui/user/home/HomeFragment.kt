@@ -1,13 +1,12 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -28,10 +27,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val mainActivity = activity as AppCompatActivity
-        if (mainActivity.supportActionBar != null){
-            mainActivity.supportActionBar!!.hide()
-        }
+//        val mainActivity = activity as AppCompatActivity
+//        if (mainActivity.supportActionBar != null){
+//            mainActivity.supportActionBar!!.hide()
+//        }
 
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
@@ -43,5 +42,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

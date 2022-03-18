@@ -29,7 +29,7 @@ class MessageFragment : Fragment() {
         _binding = FragmentMessageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it

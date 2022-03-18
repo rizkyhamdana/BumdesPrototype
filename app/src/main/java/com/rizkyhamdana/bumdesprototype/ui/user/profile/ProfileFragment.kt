@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
         val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {

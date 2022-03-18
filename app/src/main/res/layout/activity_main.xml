@@ -22,7 +22,10 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:backgroundColor="?android:attr/colorPrimary"
+        app:backgroundColor="@color/white"
+        app:textColor="@color/blue"
+        app:iconTint="@color/darkGrey"
+        app:iconTintActive="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />

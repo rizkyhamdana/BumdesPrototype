@@ -1,5 +1,6 @@
 package com.rizkyhamdana.bumdesprototype.ui.user
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolBar)
-        supportActionBar?.hide()
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         navController = navHost.navController
         setupActionBarWithNavController(navController)

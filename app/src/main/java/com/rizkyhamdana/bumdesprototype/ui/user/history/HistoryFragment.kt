@@ -22,7 +22,7 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         return binding.root
 
     }
