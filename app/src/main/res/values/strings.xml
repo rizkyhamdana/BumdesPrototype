@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">BumdesPrototype</string>
-    <string name="title_home">Home</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_profile">Profil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_messages">Messages</string>
-    <string name="title_history">History</string>
-    <string name="search">Search</string>
-    <string name="cart">Cart</string>
+    <string name="title_messages">Pesan</string>
+    <string name="title_history">Riwayat</string>
+    <string name="search">Pencarian</string>
+    <string name="cart">Keranjang</string>
+    <string name="logo_app">Logo App</string>
+
+    <string name="tab_text_1">Masuk</string>
+    <string name="tab_text_2">Daftar</string>
+    <string name="masuk">Masuk</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="email_kamu">Email kamu</string>
+    <string name="empty" />
+    <string name="lupa_password">Lupa password?</string>
+    <string name="image_intro">Image Intro</string>
+    <string name="e_cooliner">E-Cooliner</string>
+    <string name="intro_desc">E-Commerce Pasar Kuliner Bumdes Desa Rumpia</string>
+    <string name="mulai">Mulai</string>
+
 </resources>
