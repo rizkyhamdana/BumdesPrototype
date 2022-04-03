@@ -1,23 +1,32 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.home
 
-import android.app.SearchManager
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayoutMediator
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
+import com.rizkyhamdana.bumdesprototype.ui.user.home.adapter.ListKedaiAdapter
+import com.rizkyhamdana.bumdesprototype.util.DummyData
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var pagerAdapter: HomePagerAdapter
+    private lateinit var vpAdapter: ListKedaiAdapter
+
+    companion object{
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab2_text_1,
+            R.string.tab2_text_2,
+            R.string.tab2_text_3
+        )
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,17 +38,24 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        activity?.title = " "
+        pagerAdapter = HomePagerAdapter(this)
+        vpAdapter = ListKedaiAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val listKedai = DummyData.generateDummyKedai()
+        binding.apply {
+            vpShop.adapter = vpAdapter
+            vpAdapter.setKedai(listKedai)
+            vpProduct.adapter = pagerAdapter
+            TabLayoutMediator(tabLayout, vpProduct) { tab, position ->
+                tab.text = resources.getString(TAB_TITLES[position])
+            }.attach()
+            indicator.setViewPager(vpShop)
         }
-        return root
     }
 
     override fun onDestroyView() {
@@ -70,5 +86,6 @@ class HomeFragment : Fragment() {
         })
 
     }
+
 
 }

@@ -21,5 +21,13 @@
     <string name="e_cooliner">E-Cooliner</string>
     <string name="intro_desc">E-Commerce Pasar Kuliner Bumdes Desa Rumpia</string>
     <string name="mulai">Mulai</string>
+    <string name="ulangi_password">Ulangi Password</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="daftar">Daftar</string>
+    <string name="populer">Popular</string>
+
+    <string name="tab2_text_1">Makanan</string>
+    <string name="tab2_text_2">Minuman</string>
+    <string name="tab2_text_3">Cemilan</string>
 
 </resources>

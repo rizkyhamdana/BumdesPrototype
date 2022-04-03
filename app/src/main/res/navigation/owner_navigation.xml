@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.owner.home.OwnerHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_owner_home" >
+        <action
+            android:id="@+id/action_home_to_message"
+            app:destination="@id/navigation_message"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_message"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.owner.message.OwnerMessageFragment"
+        android:label="@string/title_messages"
+        tools:layout="@layout/fragment_owner_message">
+        <action
+            android:id="@+id/action_message_to_profile"
+            app:destination="@id/navigation_profile"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.owner.profile.OwnerProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_owner_profile">
+        <action
+            android:id="@+id/action_profile_to_history"
+            app:destination="@id/navigation_history"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.rizkyhamdana.bumdesprototype.ui.owner.history.OwnerHistoryFragment"
+        android:label="@string/title_history"
+        tools:layout="@layout/fragment_owner_history" />
+
+</navigation>

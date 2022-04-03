@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "275136304214",
+    "project_id": "e-cooliner",
+    "storage_bucket": "e-cooliner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275136304214:android:38b4b1eb95eac89ae7d7f7",
+        "android_client_info": {
+          "package_name": "com.rizkyhamdana.bumdesprototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275136304214-fdnja6cjtbabk3kvu9pvkjimfm6vij6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rizkyhamdana.bumdesprototype",
+            "certificate_hash": "8601ad882b939e42c538a2a4905301231a5919ae"
+          }
+        },
+        {
+          "client_id": "275136304214-gmfif10kka522fte1passer5eou8vare.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAOPPYMIKAMqGvKam_qcTgSCqZmXmSnhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275136304214-gmfif10kka522fte1passer5eou8vare.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

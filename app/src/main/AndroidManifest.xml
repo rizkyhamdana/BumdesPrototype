@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BumdesPrototype">
         <activity
+            android:name=".ui.owner.OwnerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.intro.IntroActivity"
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashscreenActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +27,11 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.user.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
