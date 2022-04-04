@@ -9,15 +9,12 @@ import android.os.Handler
 import com.rizkyhamdana.bumdesprototype.databinding.ActivitySplashscreenBinding
 import com.rizkyhamdana.bumdesprototype.ui.intro.IntroActivity
 import com.rizkyhamdana.bumdesprototype.ui.login.LoginActivity
+import com.rizkyhamdana.bumdesprototype.util.Const.MILLIS
 
 @SuppressLint("CustomSplashScreen")
 class SplashscreenActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySplashscreenBinding
-
-    companion object{
-        const val MILLIS = 3000L
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

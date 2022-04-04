@@ -29,5 +29,8 @@
     <string name="tab2_text_1">Makanan</string>
     <string name="tab2_text_2">Minuman</string>
     <string name="tab2_text_3">Cemilan</string>
+    <string name="loading">Memuat</string>
+    <string name="berhasil">Berhasil</string>
+    <string name="gagal">Gagal</string>
 
 </resources>
