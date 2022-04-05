@@ -8,8 +8,10 @@
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/button_shape.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/button_shape2.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/grey_radius.xml" value="0.196" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2985" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.2985" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2985" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.196" />
@@ -20,6 +22,7 @@
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/list_shape.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/shape_login1.xml" value="0.2975" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/shape_login2.xml" value="0.2975" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/shape_login3.xml" value="0.196" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/drawable/shape_login_3.xml" value="0.2975" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/activity_intro.xml" value="0.2" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/activity_login.xml" value="0.2" />
@@ -33,7 +36,9 @@
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_message.xml" value="0.18802083333333333" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
-        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_profile.xml" value="0.35688405797101447" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_owner_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_owner_profile.xml" value="0.33" />
+        <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/fragment_register.xml" value="0.18802083333333333" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/list_product.xml" value="0.33" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/layout/list_shop.xml" value="0.25" />

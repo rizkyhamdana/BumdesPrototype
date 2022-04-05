@@ -8,5 +8,6 @@ import kotlinx.parcelize.Parcelize
 data class UserResponse(
     var email: String = " ",
     var address: String = " ",
+    var number: String = " ",
     var name: String = " "
 ): Parcelable

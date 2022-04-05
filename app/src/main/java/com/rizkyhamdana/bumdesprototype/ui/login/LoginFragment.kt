@@ -58,19 +58,20 @@ class LoginFragment : Fragment() {
                         buttonTextRes = R.string.loading
                         progressColor = Color.WHITE
                     }
-                    val email = binding.etEmail.text.toString().trim{ it <= ' '}
-                    val password = binding.etPassword.text.toString().trim{ it <= ' '}
-                    val accountDb = loginViewModel.getAllOwner()
+                    val email = binding.etEmail.text.toString()
+                    val password = binding.etPassword.text.toString()
+                    loginViewModel.getAllOwner().observe(viewLifecycleOwner){
+                        for(i in it){
+                            if (i.email == email){
+                                isOwner = true
+                                break
+                            }
+                        }
+                    }
 
                     mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                for(i in accountDb){
-                                    if (i.email == email){
-                                        isOwner = true
-                                        break
-                                    }
-                                }
                                 binding.btnLogin.hideProgress(R.string.berhasil)
                                 if (isOwner){
                                     startActivity(Intent(activity, OwnerActivity::class.java))
