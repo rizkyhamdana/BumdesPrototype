@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.rizkyhamdana.bumdesprototype.data.PopularResponse
 import com.rizkyhamdana.bumdesprototype.data.ProdukEntity
 import com.rizkyhamdana.bumdesprototype.databinding.ListProductBinding
 
 class ListProdukAdapter:
     RecyclerView.Adapter<ListProdukAdapter.ViewHolder>() {
 
-    private var listProduk = ArrayList<ProdukEntity>()
+    private var listProduk = ArrayList<PopularResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
@@ -19,22 +20,23 @@ class ListProdukAdapter:
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ProdukEntity)
+        fun onItemClicked(data: PopularResponse)
     }
 
-    fun setProduk(listProduk : List<ProdukEntity>){
+    fun setProduk(listProduk : List<PopularResponse>){
         this.listProduk.clear()
         this.listProduk.addAll(listProduk)
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val binding: ListProductBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(produkEntity: ProdukEntity){
+        fun bind(produkEntity: PopularResponse){
             with(binding){
                 tvNameProduk.text = produkEntity.name
-                tvPrice.text = produkEntity.harga.toString()
+                tvPrice.text = "Rp. ${produkEntity.price}"
                 Glide.with(itemView.context)
-                    .load(produkEntity.image)
+                    .load(
+                        "file:///android_asset/placeholder_produk.png")
                     .apply(RequestOptions())
                     .into(imgProduk)
             }

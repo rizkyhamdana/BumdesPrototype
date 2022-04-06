@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
@@ -18,6 +19,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pagerAdapter: HomePagerAdapter
     private lateinit var vpAdapter: ListKedaiAdapter
+
+    private lateinit var homeViewModel: HomeViewModel
 
     companion object{
         private val TAB_TITLES = intArrayOf(
@@ -38,6 +41,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        homeViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
         pagerAdapter = HomePagerAdapter(this)
         vpAdapter = ListKedaiAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -46,15 +52,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listKedai = DummyData.generateDummyKedai()
         binding.apply {
-            vpShop.adapter = vpAdapter
-            vpAdapter.setKedai(listKedai)
+            homeViewModel.getAllStand().observe(viewLifecycleOwner){ stand ->
+                vpShop.adapter = vpAdapter
+                vpAdapter.setKedai(stand)
+                indicator.setViewPager(vpShop)
+            }
             vpProduct.adapter = pagerAdapter
             TabLayoutMediator(tabLayout, vpProduct) { tab, position ->
                 tab.text = resources.getString(TAB_TITLES[position])
             }.attach()
-            indicator.setViewPager(vpShop)
         }
     }
 

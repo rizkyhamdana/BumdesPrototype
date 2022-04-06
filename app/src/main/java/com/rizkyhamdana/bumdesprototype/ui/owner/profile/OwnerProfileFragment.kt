@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentOwnerProfileBinding
 import com.rizkyhamdana.bumdesprototype.ui.login.LoginActivity
@@ -39,6 +41,7 @@ class OwnerProfileFragment : Fragment() {
 
         viewModel.getAllOwner().observe(viewLifecycleOwner){
             val emailLogin = mAuth.currentUser?.email
+            val photo = mAuth.currentUser?.photoUrl
             for (i in it){
                 if (i.email == emailLogin){
                     binding.apply {
@@ -46,22 +49,16 @@ class OwnerProfileFragment : Fragment() {
                         tvEmail.text = i.email
                         tvAddress.text = i.address
                         tvNumber.text = i.number
+                        Glide.with(this@OwnerProfileFragment)
+                            .load(photo)
+                            .apply(RequestOptions())
+                            .into(imgProfile)
                     }
                 }
             }
         }
 
 
-//        for (i in allOwner) {
-//            if (i.email == mAuth.currentUser?.email) {
-//                binding.apply {
-//                    tvName.text = i.name
-//                    tvEmail.text = i.email
-//                    tvAddress.text = i.address
-//                    tvNumber.text = i.number
-//                }
-//            }
-//        }
 
         binding.btnLogout.setOnClickListener {
             mAuth.signOut()

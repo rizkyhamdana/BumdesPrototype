@@ -22,7 +22,7 @@ class MakananFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
@@ -35,8 +35,9 @@ class MakananFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
-        val produk = homeViewModel.setProduk(1)
-        adapter.setProduk(produk)
+        homeViewModel.getFoodPopular().observe(viewLifecycleOwner){ produk ->
+            adapter.setProduk(produk)
+        }
     }
 
 }

@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rizkyhamdana.bumdesprototype.data.KedaiEntity
+import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListShopBinding
 
 class ListKedaiAdapter:
     RecyclerView.Adapter<ListKedaiAdapter.ViewHolder>() {
 
-    private var listKedai = ArrayList<KedaiEntity>()
+    private var listKedai = ArrayList<StandResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
@@ -19,21 +20,22 @@ class ListKedaiAdapter:
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: KedaiEntity)
+        fun onItemClicked(data: StandResponse)
     }
 
-    fun setKedai(listKedai: List<KedaiEntity>){
+    fun setKedai(listKedai: List<StandResponse>){
         this.listKedai.clear()
         this.listKedai.addAll(listKedai)
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val binding: ListShopBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(kedaiEntity: KedaiEntity){
+        fun bind(kedaiEntity: StandResponse){
             with(binding){
                 tvName.text = kedaiEntity.name
                 Glide.with(itemView.context)
-                    .load(kedaiEntity.image)
+                    .load(
+                        "file:///android_asset/placeholder_kedai.png")
                     .apply(RequestOptions())
                     .into(imgShop)
             }
