@@ -1,37 +1,30 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.home
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.rizkyhamdana.bumdesprototype.data.PopularResponse
-import com.rizkyhamdana.bumdesprototype.data.ProdukEntity
+import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.data.StandResponse
+import com.rizkyhamdana.bumdesprototype.data.UserResponse
+import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
-import com.rizkyhamdana.bumdesprototype.util.DummyData
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application): AndroidViewModel(application) {
 
+    private val appRepository: AppRepository
 
-    private val appRepository: AppRepository = AppRepository()
-
-
-    private var listProduk = ArrayList<ProdukEntity>()
-
-    fun setProduk(category : Int): List<ProdukEntity>{
-        val dataDummy = DummyData.generateDummyProduk()
-        for(i in dataDummy){
-            if (category == i.kategori){
-                listProduk.add(i)
-            }
-        }
-        return listProduk
+    init {
+        val appDao = AppDatabase.getDatabase(application).appDao()
+        appRepository = AppRepository(appDao)
     }
-
-    fun getFoodPopular(): LiveData<List<PopularResponse>> = appRepository.getFoodPopular()
-    fun getDrinkPopular(): LiveData<List<PopularResponse>> = appRepository.getDrinkPopular()
-    fun getSnackPopular(): LiveData<List<PopularResponse>> = appRepository.getSnackPopular()
+    fun getFoodPopular(): LiveData<List<ProdukResponse>> = appRepository.getFoodPopular()
+    fun getDrinkPopular(): LiveData<List<ProdukResponse>> = appRepository.getDrinkPopular()
+    fun getSnackPopular(): LiveData<List<ProdukResponse>> = appRepository.getSnackPopular()
 
     fun getAllStand() : LiveData<List<StandResponse>> = appRepository.getAllStand()
+
+
+    fun getAllUser(): LiveData<List<UserResponse>> = appRepository.getAllUser()
 
 
 }

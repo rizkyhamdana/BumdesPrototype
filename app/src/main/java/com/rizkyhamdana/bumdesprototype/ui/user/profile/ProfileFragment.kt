@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentProfileBinding
 import com.rizkyhamdana.bumdesprototype.ui.login.LoginActivity
+import com.rizkyhamdana.bumdesprototype.util.Const.PROFILE_IMAGE
 
 
 class ProfileFragment : Fragment() {
@@ -43,7 +44,6 @@ class ProfileFragment : Fragment() {
         profileViewModel.getAllUser().observe(viewLifecycleOwner){
 
             val emailLogin = mAuth.currentUser?.email
-            val photo = mAuth.currentUser?.photoUrl
             for (i in it){
                 if (i.email == emailLogin){
                     binding.apply {
@@ -52,7 +52,7 @@ class ProfileFragment : Fragment() {
                         tvAddress.text = i.address
                         tvNumber.text = i.number
                         Glide.with(this@ProfileFragment)
-                            .load(photo)
+                            .load(PROFILE_IMAGE)
                             .apply(RequestOptions())
                             .into(imgProfile)
                     }

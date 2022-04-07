@@ -35,5 +35,20 @@
     <string name="informasi_user">Informasi User</string>
     <string name="logout">Logout</string>
     <string name="button_edit">Button Edit</string>
+    <string name="tambah_produk">Tambah Produk</string>
+    <string name="stand">Stand</string>
+    <string name="harga">Harga</string>
+    <string name="tambahkan_ke_keranjang">Tambahkan ke Keranjang</string>
+    <string name="kuantitas">Kuantitas</string>
+    <string name="_1">1</string>
+    <string name="button_min_product">Button min product</string>
+    <string name="button_add_qty">Button add qty</string>
+    <string name="alamat_detail">Alamat Detail</string>
+    <string name="metode_pemesanan">Metode Pemesanan</string>
+    <string name="ambil_di_tempat">Ambil di tempat</string>
+    <string name="pesan_antar">Pesan Antar</string>
+    <string name="selesaikan_pembayaran">Selesaikan Pembayaran</string>
+    <string name="total">Total</string>
+    <string name="checkout">Checkout</string>
 
 </resources>

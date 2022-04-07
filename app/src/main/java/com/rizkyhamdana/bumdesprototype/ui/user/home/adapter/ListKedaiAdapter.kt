@@ -8,6 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.rizkyhamdana.bumdesprototype.data.KedaiEntity
 import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListShopBinding
+import com.rizkyhamdana.bumdesprototype.util.Const.STAND_IMAGE
 
 class ListKedaiAdapter:
     RecyclerView.Adapter<ListKedaiAdapter.ViewHolder>() {
@@ -35,7 +36,7 @@ class ListKedaiAdapter:
                 tvName.text = kedaiEntity.name
                 Glide.with(itemView.context)
                     .load(
-                        "file:///android_asset/placeholder_kedai.png")
+                        STAND_IMAGE)
                     .apply(RequestOptions())
                     .into(imgShop)
             }

@@ -5,5 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class StandResponse(
+    var id: String = " ",
     var name: String = " "
 ): Parcelable

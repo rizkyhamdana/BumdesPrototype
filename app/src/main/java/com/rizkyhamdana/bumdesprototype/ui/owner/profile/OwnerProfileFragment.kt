@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentOwnerProfileBinding
 import com.rizkyhamdana.bumdesprototype.ui.login.LoginActivity
+import com.rizkyhamdana.bumdesprototype.util.Const
 
 
 class OwnerProfileFragment : Fragment() {
@@ -41,7 +42,6 @@ class OwnerProfileFragment : Fragment() {
 
         viewModel.getAllOwner().observe(viewLifecycleOwner){
             val emailLogin = mAuth.currentUser?.email
-            val photo = mAuth.currentUser?.photoUrl
             for (i in it){
                 if (i.email == emailLogin){
                     binding.apply {
@@ -50,7 +50,7 @@ class OwnerProfileFragment : Fragment() {
                         tvAddress.text = i.address
                         tvNumber.text = i.number
                         Glide.with(this@OwnerProfileFragment)
-                            .load(photo)
+                            .load(Const.PROFILE_IMAGE)
                             .apply(RequestOptions())
                             .into(imgProfile)
                     }

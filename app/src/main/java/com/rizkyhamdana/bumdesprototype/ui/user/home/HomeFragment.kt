@@ -1,5 +1,6 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -8,10 +9,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.R
+import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
+import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity
+import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity.Companion.EXTRA_USER
+import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity
+import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity.Companion.EXTRA_STAND
 import com.rizkyhamdana.bumdesprototype.ui.user.home.adapter.ListKedaiAdapter
-import com.rizkyhamdana.bumdesprototype.util.DummyData
 
 class HomeFragment : Fragment() {
 
@@ -19,6 +25,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pagerAdapter: HomePagerAdapter
     private lateinit var vpAdapter: ListKedaiAdapter
+    private lateinit var mAuth : FirebaseAuth
+    private var idUser: String = " "
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -45,6 +53,15 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
         pagerAdapter = HomePagerAdapter(this)
+        mAuth = FirebaseAuth.getInstance()
+        homeViewModel.getAllUser().observe(viewLifecycleOwner){
+            val emailLogin = mAuth.currentUser?.email
+            for (i in it) {
+                if (i.email == emailLogin) {
+                    idUser = i.id
+                }
+            }
+        }
         vpAdapter = ListKedaiAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -62,6 +79,14 @@ class HomeFragment : Fragment() {
             TabLayoutMediator(tabLayout, vpProduct) { tab, position ->
                 tab.text = resources.getString(TAB_TITLES[position])
             }.attach()
+            vpAdapter.setOnItemClickCallback(object : ListKedaiAdapter.OnItemClickCallback{
+                override fun onItemClicked(data: StandResponse) {
+                    val intent = Intent(activity, DetailStandActivity::class.java)
+                    intent.putExtra(EXTRA_STAND, data)
+                    startActivity(intent)
+                }
+
+            })
         }
     }
 
@@ -92,6 +117,17 @@ class HomeFragment : Fragment() {
 
         })
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_cart -> {
+                val intent = Intent(activity, CartActivity::class.java)
+                intent.putExtra(EXTRA_USER, idUser)
+                startActivity(intent)
+            }
+        }
+        return false
     }
 
 

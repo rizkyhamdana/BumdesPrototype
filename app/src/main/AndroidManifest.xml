@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rizkyhamdana.bumdesprototype">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,15 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BumdesPrototype">
         <activity
+            android:name=".ui.owner.add.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.detail.DetailStandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.detail.DetailProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.checkout.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.cart.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.owner.OwnerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.intro.IntroActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.splash.SplashscreenActivity"
             android:exported="true"
@@ -36,14 +51,14 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
     </application>
 

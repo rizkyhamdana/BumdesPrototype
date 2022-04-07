@@ -5,38 +5,39 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.rizkyhamdana.bumdesprototype.data.PopularResponse
-import com.rizkyhamdana.bumdesprototype.data.ProdukEntity
+import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListProductBinding
+import com.rizkyhamdana.bumdesprototype.util.Const
 
 class ListProdukAdapter:
     RecyclerView.Adapter<ListProdukAdapter.ViewHolder>() {
-
-    private var listProduk = ArrayList<PopularResponse>()
+    private var listProduk = ArrayList<ProdukResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: PopularResponse)
+        fun onItemClicked(data: ProdukResponse)
     }
 
-    fun setProduk(listProduk : List<PopularResponse>){
+    fun setProduk(listProduk: List<ProdukResponse>) {
         this.listProduk.clear()
         this.listProduk.addAll(listProduk)
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ListProductBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(produkEntity: PopularResponse){
-            with(binding){
+    inner class ViewHolder(private val binding: ListProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(produkEntity: ProdukResponse) {
+            with(binding) {
                 tvNameProduk.text = produkEntity.name
                 tvPrice.text = "Rp. ${produkEntity.price}"
                 Glide.with(itemView.context)
                     .load(
-                        "file:///android_asset/placeholder_produk.png")
+                        Const.FOOD_IMAGE
+                    )
                     .apply(RequestOptions())
                     .into(imgProduk)
             }
@@ -53,7 +54,7 @@ class ListProdukAdapter:
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produk = listProduk[position]
         holder.bind(produk)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(listProduk[position])
         }
 

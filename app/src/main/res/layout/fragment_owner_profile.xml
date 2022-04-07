@@ -41,7 +41,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_profile"
         android:layout_width="100dp"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_margin="20dp"
         app:shapeAppearanceOverlay="@style/roundedCorners"
         android:scaleType="fitXY"

@@ -19,7 +19,6 @@ import com.rizkyhamdana.bumdesprototype.databinding.FragmentLoginBinding
 import com.rizkyhamdana.bumdesprototype.ui.owner.OwnerActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.MainActivity
 
-
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -74,7 +73,8 @@ class LoginFragment : Fragment() {
                             if (task.isSuccessful) {
                                 binding.btnLogin.hideProgress(R.string.berhasil)
                                 if (isOwner){
-                                    startActivity(Intent(activity, OwnerActivity::class.java))
+                                    val intent = Intent(activity, OwnerActivity::class.java)
+                                    startActivity(intent)
                                     activity?.finish()
                                 }else{
                                     startActivity(Intent(activity, MainActivity::class.java))
