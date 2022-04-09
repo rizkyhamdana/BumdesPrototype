@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.data.StandResponse
+import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
 import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity.Companion.EXTRA_USER
@@ -26,7 +27,8 @@ class HomeFragment : Fragment() {
     private lateinit var pagerAdapter: HomePagerAdapter
     private lateinit var vpAdapter: ListKedaiAdapter
     private lateinit var mAuth : FirebaseAuth
-    private var idUser: String = " "
+    private var userResponse = UserResponse()
+
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -54,11 +56,12 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this)[HomeViewModel::class.java]
         pagerAdapter = HomePagerAdapter(this)
         mAuth = FirebaseAuth.getInstance()
+
         homeViewModel.getAllUser().observe(viewLifecycleOwner){
             val emailLogin = mAuth.currentUser?.email
             for (i in it) {
                 if (i.email == emailLogin) {
-                    idUser = i.id
+                    userResponse = i
                 }
             }
         }
@@ -123,7 +126,7 @@ class HomeFragment : Fragment() {
         when(item.itemId){
             R.id.menu_cart -> {
                 val intent = Intent(activity, CartActivity::class.java)
-                intent.putExtra(EXTRA_USER, idUser)
+                intent.putExtra(EXTRA_USER, userResponse)
                 startActivity(intent)
             }
         }

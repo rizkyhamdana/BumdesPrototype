@@ -41,22 +41,17 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel.getAllUser().observe(viewLifecycleOwner){
-
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it){
-                if (i.email == emailLogin){
-                    binding.apply {
-                        tvName.text = i.name
-                        tvEmail.text = i.email
-                        tvAddress.text = i.address
-                        tvNumber.text = i.number
+        val emailLogin = mAuth.currentUser?.email
+        profileViewModel.getUserbyEmail(emailLogin!!).observe(viewLifecycleOwner){
+            binding.apply {
+                        tvName.text = it.name
+                        tvEmail.text = it.email
+                        tvAddress.text = it.address
+                        tvNumber.text = it.number
                         Glide.with(this@ProfileFragment)
                             .load(PROFILE_IMAGE)
                             .apply(RequestOptions())
                             .into(imgProfile)
-                    }
-                }
             }
         }
 

@@ -87,5 +87,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.2"
 
 
+    //Chat UI
+    implementation 'com.github.timigod:android-chat-ui:v0.1.4'
 
 }

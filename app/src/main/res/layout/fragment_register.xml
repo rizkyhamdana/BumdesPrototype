@@ -53,47 +53,77 @@
         android:importantForAutofill="no" />
 
     <TextView
-        android:id="@+id/tv_password"
+        android:id="@+id/tv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/password"
+        android:text="@string/alamat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_address"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
+        android:layout_height="wrap_content"
+        android:hint="@string/empty"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        android:importantForAutofill="no" />
 
     <TextView
-        android:id="@+id/tv__repeat_password"
+        android:id="@+id/tv_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="@string/ulangi_password"
+        android:layout_marginEnd="20dp"
+        android:text="@string/nomor_hp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_address" />
 
     <EditText
-        android:id="@+id/et_repeat_password"
+        android:id="@+id/et_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:importantForAutofill="no"
-        android:inputType="textPassword"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv__repeat_password" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_number" />
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_number" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/btnregister"

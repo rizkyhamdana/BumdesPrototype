@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BumdesPrototype</string>
+    <string name="app_name">E-Cooliner</string>
     <string name="title_home">Beranda</string>
     <string name="title_profile">Profil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -50,5 +50,13 @@
     <string name="selesaikan_pembayaran">Selesaikan Pembayaran</string>
     <string name="total">Total</string>
     <string name="checkout">Checkout</string>
+    <string name="detail">Detail</string>
+    <string name="status">Status:</string>
+    <string name="menunggu">Menunggu</string>
+    <string name="diproses">Diproses</string>
+    <string name="selesai">Selesai</string>
+    <string name="test">Test</string>
+    <string name="alamat">Alamat</string>
+    <string name="nomor_hp">Nomor HP</string>
 
 </resources>

@@ -57,5 +57,4 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
 
     fun getCheckoutbyUser(idUser: String) : LiveData<List<Checkout>> = appRepository.getCheckoutbyUser(idUser)
 
-
 }
