@@ -1,7 +1,7 @@
-package com.rizkyhamdana.bumdesprototype.ui.user.message.chat
+package com.rizkyhamdana.bumdesprototype.ui.owner.message
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import co.intentservice.chatui.models.ChatMessage
 import com.google.firebase.database.FirebaseDatabase
@@ -9,12 +9,12 @@ import com.rizkyhamdana.bumdesprototype.data.ChatResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ActivityChatBinding
 import com.rizkyhamdana.bumdesprototype.util.Const
 
-class ChatActivity : AppCompatActivity() {
+class OwnerChatActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityChatBinding
-    private lateinit var viewModel: ChatViewModel
+    private lateinit var viewModel: OwnerMessageViewModel
 
-    companion object{
+    companion object {
         const val EXTRA_ID = "extra_id"
         const val EXTRA_NAME = "extra_name"
         const val EXTRA_MYID = "extra_myid"
@@ -25,7 +25,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
+        viewModel = ViewModelProvider(this)[OwnerMessageViewModel::class.java]
 
         val myId = intent.getStringExtra(EXTRA_MYID) as String
         val otherId = intent.getStringExtra(EXTRA_ID) as String
@@ -34,17 +34,17 @@ class ChatActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolBar)
         title = otherName
 
-        viewModel.getChatbyStand(otherId, myId).observe(this){
-            for ((index, i) in it.withIndex()){
+        viewModel.getChatbyStand(myId, otherId).observe(this) {
+            for ((index, i) in it.withIndex()) {
                 binding.chatView.removeMessage(index)
-                if (i.idSender == myId){
+                if (i.idSender == myId) {
                     val chatMessage = ChatMessage(
                         i.message,
                         i.date,
                         ChatMessage.Type.SENT
                     )
                     binding.chatView.addMessage(chatMessage)
-                }else{
+                } else {
                     val chatMessage = ChatMessage(
                         i.message,
                         i.date,
@@ -68,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
                 )
                 val firebaseDb = FirebaseDatabase.getInstance(Const.BASE_URL)
                 val reference = firebaseDb.getReference("chat")
-                val childReference = reference.child(otherId)
+                val childReference = reference.child(myId)
                 val key = childReference.push().key as String
                 childReference.child(key).setValue(chatResponse)
                 finish()

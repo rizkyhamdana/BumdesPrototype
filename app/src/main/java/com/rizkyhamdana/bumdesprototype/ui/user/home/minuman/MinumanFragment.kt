@@ -45,19 +45,11 @@ class MinumanFragment : Fragment() {
         homeViewModel.getDrinkPopular().observe(viewLifecycleOwner){ produk ->
             adapter.setProduk(produk)
         }
-        homeViewModel.getAllUser().observe(viewLifecycleOwner){
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it) {
-                if (i.email == emailLogin) {
-                    idUser = i.id
-                }
-            }
-        }
+        idUser = mAuth.currentUser?.uid as String
         adapter.setOnItemClickCallback(object : ListProdukAdapter.OnItemClickCallback{
             override fun onItemClicked(data: ProdukResponse) {
                 val intent = Intent(activity, DetailProductActivity::class.java)
                 intent.putExtra(DetailProductActivity.EXTRA_PRODUCT, data)
-
                 intent.putExtra(DetailProductActivity.EXTRA_USER, idUser)
                 startActivity(intent)
             }

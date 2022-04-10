@@ -59,6 +59,21 @@
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/menu/cart_menu.xml" value="0.24583333333333332" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/menu/home_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_add_product.xml" value="0.33" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_chat.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_checkout.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_history.xml" value="0.25" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_owner_history.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_product.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_history.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_message.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_history.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_message.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_profile.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/menu/add_menu.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>

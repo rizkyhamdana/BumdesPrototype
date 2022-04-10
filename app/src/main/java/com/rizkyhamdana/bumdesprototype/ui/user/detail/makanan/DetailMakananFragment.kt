@@ -44,14 +44,7 @@ class DetailMakananFragment: Fragment() {
         val stand = activity?.intent?.getParcelableExtra<StandResponse>(DetailStandActivity.EXTRA_STAND) as StandResponse
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
-        homeViewModel.getAllUser().observe(viewLifecycleOwner){
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it) {
-                if (i.email == emailLogin) {
-                    idUser = i.id
-                }
-            }
-        }
+        idUser = mAuth.currentUser?.uid as String
         homeViewModel.getFoodbyStand(stand.id).observe(viewLifecycleOwner) { produk ->
             adapter.setProduk(produk)
         }

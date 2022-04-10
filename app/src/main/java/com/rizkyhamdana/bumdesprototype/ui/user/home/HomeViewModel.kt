@@ -24,7 +24,7 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     fun getAllStand() : LiveData<List<StandResponse>> = appRepository.getAllStand()
 
 
-    fun getAllUser(): LiveData<List<UserResponse>> = appRepository.getAllUser()
+    fun getUserbyId(id: String): LiveData<UserResponse> = appRepository.getUserbyid(id)
 
 
 }

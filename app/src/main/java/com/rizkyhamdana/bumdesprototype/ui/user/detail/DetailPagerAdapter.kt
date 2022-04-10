@@ -1,6 +1,5 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.detail
 
-import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter

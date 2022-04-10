@@ -24,6 +24,7 @@ class OwnerHomeViewModel(application: Application): AndroidViewModel(application
 
     fun getAllStand() : LiveData<List<StandResponse>> = appRepository.getAllStand()
 
-    fun getAllOwner(): LiveData<List<OwnerResponse>> = appRepository.getAllOwner()
+
+    fun getOwnerById(id: String) : LiveData<OwnerResponse> = appRepository.getOwnerById(id)
 
 }

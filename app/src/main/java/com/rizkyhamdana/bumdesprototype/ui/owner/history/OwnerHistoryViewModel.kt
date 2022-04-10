@@ -1,14 +1,15 @@
-package com.rizkyhamdana.bumdesprototype.ui.user.history
+package com.rizkyhamdana.bumdesprototype.ui.owner.history
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.rizkyhamdana.bumdesprototype.data.OrderResponse
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
 
-class HistoryViewModel(application: Application): AndroidViewModel(application) {
+class OwnerHistoryViewModel(application: Application): AndroidViewModel(application) {
 
     private val appRepository: AppRepository
 
@@ -17,5 +18,7 @@ class HistoryViewModel(application: Application): AndroidViewModel(application) 
         appRepository = AppRepository(appDao)
     }
 
-    fun getAllOrder(id: String): LiveData<List<OrderResponse>> = appRepository.getAllOrder(id)
+    fun getAllOrderbyStand(idStand: String): LiveData<List<OrderResponse>> = appRepository.getOrderbyStand(idStand)
+
+    fun getOwnerById(id: String) : LiveData<OwnerResponse> = appRepository.getOwnerById(id)
 }

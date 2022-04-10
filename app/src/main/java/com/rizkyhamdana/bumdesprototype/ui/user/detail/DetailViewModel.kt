@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
-import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.data.local.Checkout
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
@@ -26,8 +25,6 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
     fun getDrinkbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getDrinkbyStand(stand)
     fun getSnackbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getSnackbyStand(stand)
 
-    fun getAllUser(): LiveData<List<UserResponse>> = appRepository.getAllUser()
-
     fun insertCheckout(checkout: Checkout){
         viewModelScope.launch(Dispatchers.IO) {
             appRepository.insertCheckout(checkout)
@@ -43,10 +40,6 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
             appRepository.clearCheckout()
         }
     }
-
-
-    fun getAllCheckout(): LiveData<List<Checkout>> = appRepository.getAllCheckout()
-
 
     fun deleteCheckout(checkout: Checkout) {
         viewModelScope.launch(Dispatchers.IO) {

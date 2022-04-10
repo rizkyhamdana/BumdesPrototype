@@ -3,11 +3,7 @@ package com.rizkyhamdana.bumdesprototype.ui.user.message
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.rizkyhamdana.bumdesprototype.data.OrderResponse
 import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
-import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
 

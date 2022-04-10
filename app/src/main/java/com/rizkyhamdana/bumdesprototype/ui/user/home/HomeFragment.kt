@@ -56,14 +56,10 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this)[HomeViewModel::class.java]
         pagerAdapter = HomePagerAdapter(this)
         mAuth = FirebaseAuth.getInstance()
+        val idUser = mAuth.currentUser?.uid as String
+        homeViewModel.getUserbyId(idUser).observe(viewLifecycleOwner){
+            userResponse = it
 
-        homeViewModel.getAllUser().observe(viewLifecycleOwner){
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it) {
-                if (i.email == emailLogin) {
-                    userResponse = i
-                }
-            }
         }
         vpAdapter = ListKedaiAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)

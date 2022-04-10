@@ -1,14 +1,13 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ActivityDetailStandBinding
-import com.rizkyhamdana.bumdesprototype.ui.user.home.HomeFragment
 import com.rizkyhamdana.bumdesprototype.util.Const
 
 class DetailStandActivity : AppCompatActivity() {

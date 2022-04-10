@@ -58,5 +58,16 @@
     <string name="test">Test</string>
     <string name="alamat">Alamat</string>
     <string name="nomor_hp">Nomor HP</string>
+    <string name="nama_pemesan">Nama Pemesan</string>
+    <string name="pesanan">Pesanan</string>
+    <string name="tanggal_pesan">Tanggal Pesan</string>
+    <string name="total_bayar">Total Bayar</string>
+    <string name="konfirmasi_selesai">Konfirmasi selesai</string>
+    <string name="process_order">Proses pesanan</string>
+    <string name="harga_satuan">Harga Satuan</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="tambah">Tambah</string>
+    <string name="kategori">Kategori</string>
+    <string name="status2">Status</string>
 
 </resources>

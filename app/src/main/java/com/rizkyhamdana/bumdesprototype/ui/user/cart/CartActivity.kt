@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.Checkout
 import com.rizkyhamdana.bumdesprototype.databinding.ActivityCartBinding
@@ -19,6 +21,7 @@ class CartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCartBinding
     private lateinit var adapter: CartAdapter
     private lateinit var viewModel: DetailViewModel
+    private lateinit var swipeToDeleteCallback: SwipeToDeleteCallback
     private var totalBayar: Int = 0
     private var allOrder: String = " "
     private var stand: String = " "
@@ -41,6 +44,13 @@ class CartActivity : AppCompatActivity() {
         binding.rvCart.layoutManager = LinearLayoutManager(this)
         viewModel.getCheckoutbyUser(user.id).observe(this){
             adapter.setProduk(it)
+            swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.adapterPosition
+                    viewModel.deleteCheckout(it[position])
+                    binding.rvCart.adapter?.notifyItemRemoved(position)
+                }
+            }
             for (i in it){
                 totalBayar += i.total
                 if(i == it.last()){
@@ -52,6 +62,8 @@ class CartActivity : AppCompatActivity() {
             }
             binding.tvTotal.text = "Rp $totalBayar"
         }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(binding.rvCart)
         adapter.setOnItemClickCallback(object : CartAdapter
         .OnItemClickCallback{
             override fun onItemClicked(data: Checkout) {

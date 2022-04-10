@@ -24,8 +24,11 @@ class AppRepository(private val appDao: AppDao) {
     private val listDrink = MutableLiveData<List<ProdukResponse>>()
     private val listSnack = MutableLiveData<List<ProdukResponse>>()
     private val listOrder = MutableLiveData<List<OrderResponse>>()
+    private val listOwnerOrder = MutableLiveData<List<OrderResponse>>()
     private val listChat = MutableLiveData<List<ChatResponse>>()
+    private val listChatUser = MutableLiveData<List<String>>()
     private val user = MutableLiveData<UserResponse>()
+    private val owner = MutableLiveData<OwnerResponse>()
 
     fun getAllOwner(): LiveData<List<OwnerResponse>> {
         val owners = ArrayList<OwnerResponse>()
@@ -69,7 +72,7 @@ class AppRepository(private val appDao: AppDao) {
 
     }
 
-    fun getUserbyEmail(email: String): LiveData<UserResponse> {
+    fun getUserbyid(id: String): LiveData<UserResponse> {
         val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
         firebaseDb.getReference("account")
             .child("user")
@@ -77,7 +80,7 @@ class AppRepository(private val appDao: AppDao) {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (i in snapshot.children) {
                         val accountUser = i.getValue(UserResponse::class.java) as UserResponse
-                        if (email == accountUser.email){
+                        if (id == accountUser.id){
                             user.postValue(accountUser)
                         }
                     }
@@ -89,6 +92,26 @@ class AppRepository(private val appDao: AppDao) {
             })
         return user
 
+    }
+    fun getOwnerById(id: String): LiveData<OwnerResponse>{
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("account")
+            .child("owner")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        val accountOwner = i.getValue(OwnerResponse::class.java) as OwnerResponse
+                        if (id == accountOwner.id){
+                            owner.postValue(accountOwner)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+        return owner
     }
 
     fun getFoodPopular(): LiveData<List<ProdukResponse>>{
@@ -263,6 +286,28 @@ class AppRepository(private val appDao: AppDao) {
         return listOrder
     }
 
+    fun getOrderbyStand(idStand: String): LiveData<List<OrderResponse>>{
+        val orders = ArrayList<OrderResponse>()
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("order")
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children){
+                        val order = i.getValue(OrderResponse::class.java) as OrderResponse
+                        if (idStand == order.idStand){
+                            orders.add(order)
+                            listOwnerOrder.postValue(orders)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+        return listOwnerOrder
+    }
+
     fun getChatbyStand(stand: String, myId: String): LiveData<List<ChatResponse>>{
         val chats = ArrayList<ChatResponse>()
         val firebasDb = FirebaseDatabase.getInstance(BASE_URL)
@@ -286,9 +331,34 @@ class AppRepository(private val appDao: AppDao) {
         return listChat
     }
 
+    fun getAllChat(stand: String): LiveData<List<String>>{
+        val chats = ArrayList<String>()
+        val firebasDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebasDb.getReference("chat")
+            .child(stand)
+            .addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children){
+                        val chat = i.getValue(ChatResponse::class.java) as ChatResponse
+                            if (chat.idSender == stand) {
+                                chats.add(chat.idReceiver)
+                                val distinct = chats.distinct().toList()
+                                listChatUser.postValue(distinct)
+                            }else if (chat.idReceiver == stand) {
+                                chats.add(chat.idSender)
+                                val distinct = chats.distinct().toList()
+                                listChatUser.postValue(distinct)
+                            }
+                        }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        return listChatUser
+    }
+
     suspend fun insertCheckout(checkout: Checkout) = appDao.insertCheckout(checkout)
     suspend fun deleteCheckout(checkout: Checkout) = appDao.deleteCheckout(checkout)
-    fun getAllCheckout(): LiveData<List<Checkout>> = appDao.getAllCheckout()
     fun getCheckoutbyId(id: String) : LiveData<Checkout> = appDao.getCheckoutbyId(id)
     fun getCheckoutbyUser(idUser: String) : LiveData<List<Checkout>> = appDao.getCheckoutbyUser(idUser)
     suspend fun clearCheckout() = appDao.clearCheckout()

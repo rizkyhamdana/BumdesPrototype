@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.rizkyhamdana.bumdesprototype.data.KedaiEntity
 import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListShopBinding
 import com.rizkyhamdana.bumdesprototype.util.Const.STAND_IMAGE

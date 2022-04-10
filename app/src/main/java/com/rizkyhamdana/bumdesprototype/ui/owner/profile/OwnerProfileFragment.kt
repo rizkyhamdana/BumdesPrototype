@@ -40,21 +40,17 @@ class OwnerProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAllOwner().observe(viewLifecycleOwner){
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it){
-                if (i.email == emailLogin){
-                    binding.apply {
-                        tvName.text = i.name
-                        tvEmail.text = i.email
-                        tvAddress.text = i.address
-                        tvNumber.text = i.number
-                        Glide.with(this@OwnerProfileFragment)
-                            .load(Const.PROFILE_IMAGE)
-                            .apply(RequestOptions())
-                            .into(imgProfile)
-                    }
-                }
+        val idOwner = mAuth.currentUser?.uid
+        viewModel.getOwnerById(idOwner!!).observe(viewLifecycleOwner){
+            binding.apply {
+                tvName.text = it.name
+                tvEmail.text = it.email
+                tvAddress.text = it.address
+                tvNumber.text = it.number
+                Glide.with(this@OwnerProfileFragment)
+                    .load(Const.PROFILE_IMAGE)
+                    .apply(RequestOptions())
+                    .into(imgProfile)
             }
         }
 

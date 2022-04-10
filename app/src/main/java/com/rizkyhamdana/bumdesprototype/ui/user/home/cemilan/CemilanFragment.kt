@@ -42,14 +42,7 @@ class CemilanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
-        homeViewModel.getAllUser().observe(viewLifecycleOwner){
-            val emailLogin = mAuth.currentUser?.email
-            for (i in it) {
-                if (i.email == emailLogin) {
-                    idUser = i.id
-                }
-            }
-        }
+        idUser = mAuth.currentUser?.uid as String
         homeViewModel.getSnackPopular().observe(viewLifecycleOwner){ produk ->
             adapter.setProduk(produk)
         }
@@ -57,7 +50,6 @@ class CemilanFragment : Fragment() {
             override fun onItemClicked(data: ProdukResponse) {
                 val intent = Intent(activity, DetailProductActivity::class.java)
                 intent.putExtra(EXTRA_PRODUCT, data)
-
                 intent.putExtra(DetailProductActivity.EXTRA_USER, idUser)
                 startActivity(intent)
             }

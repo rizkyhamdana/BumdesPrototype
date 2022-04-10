@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentListProductBinding
-import com.rizkyhamdana.bumdesprototype.ui.owner.OwnerActivity
 import com.rizkyhamdana.bumdesprototype.ui.owner.home.OwnerHomeViewModel
 import com.rizkyhamdana.bumdesprototype.ui.user.home.adapter.ListProdukAdapter
 

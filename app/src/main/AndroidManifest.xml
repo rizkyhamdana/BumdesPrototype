@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BumdesPrototype">
         <activity
+            android:name=".ui.owner.history.DetailOwnerHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.owner.message.OwnerChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.history.DetailHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.message.chat.ChatActivity"
             android:exported="false" />
         <activity

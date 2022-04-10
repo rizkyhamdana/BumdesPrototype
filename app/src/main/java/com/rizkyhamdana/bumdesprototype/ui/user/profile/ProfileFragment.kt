@@ -41,8 +41,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val emailLogin = mAuth.currentUser?.email
-        profileViewModel.getUserbyEmail(emailLogin!!).observe(viewLifecycleOwner){
+        val idUser = mAuth.currentUser?.uid as String
+        profileViewModel.getUserbyId(idUser).observe(viewLifecycleOwner){
             binding.apply {
                         tvName.text = it.name
                         tvEmail.text = it.email
