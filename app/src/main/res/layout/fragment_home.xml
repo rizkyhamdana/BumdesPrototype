@@ -9,7 +9,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_shop"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:orientation="horizontal"
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,6 @@
         android:fontFamily="@font/poppins_light"
         android:text="@string/populer"
         android:textColor="@color/black"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/vp_shop"
         app:layout_constraintTop_toBottomOf="@+id/indicator" />
 

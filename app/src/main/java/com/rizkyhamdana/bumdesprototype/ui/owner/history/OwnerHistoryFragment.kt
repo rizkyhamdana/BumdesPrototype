@@ -2,17 +2,16 @@ package com.rizkyhamdana.bumdesprototype.ui.owner.history
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.data.OrderResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentOwnerHistoryBinding
 import com.rizkyhamdana.bumdesprototype.ui.owner.history.DetailOwnerHistoryActivity.Companion.EXTRA_HISTORY
-import com.rizkyhamdana.bumdesprototype.ui.user.history.DetailHistoryActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.history.HistoryAdapter
 
 class OwnerHistoryFragment : Fragment() {

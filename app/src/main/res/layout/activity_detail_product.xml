@@ -21,8 +21,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_produk"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,6 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:textColor="@color/blue"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_produk"
@@ -47,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +56,6 @@
         android:id="@+id/tv_stand_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_stand_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_stand_title"
         tools:text="Kedai Corner" />
@@ -70,7 +67,6 @@
         android:layout_marginTop="10dp"
         android:text="@string/harga"
         android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_stand_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_stand_name" />
 
@@ -78,7 +74,6 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_price_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_price_title"
         tools:text="Rp. 10000" />
@@ -90,7 +85,6 @@
         android:text="@string/kuantitas"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_price"
         app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
@@ -111,7 +105,7 @@
         android:id="@+id/et_qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_qty_title" />
 

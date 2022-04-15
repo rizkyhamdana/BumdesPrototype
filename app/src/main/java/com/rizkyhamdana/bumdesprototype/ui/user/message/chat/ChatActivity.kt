@@ -84,6 +84,12 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+
     override fun onStart() {
         super.onStart()
         binding.chatView.clearMessages()

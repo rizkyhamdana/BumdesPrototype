@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view3"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="190dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -44,7 +44,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Kedai pertama"
-        android:textSize="20sp"
         android:textColor="@color/black"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/view3"

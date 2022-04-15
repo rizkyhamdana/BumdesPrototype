@@ -2,7 +2,9 @@ package com.rizkyhamdana.bumdesprototype.ui.owner.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -14,7 +16,6 @@ import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentOwnerHomeBinding
 import com.rizkyhamdana.bumdesprototype.ui.owner.add.AddProductActivity
 import com.rizkyhamdana.bumdesprototype.ui.owner.add.AddProductActivity.Companion.EXTRA_OWNER
-import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity
 import com.rizkyhamdana.bumdesprototype.util.Const
 
 class OwnerHomeFragment : Fragment() {
@@ -53,25 +54,21 @@ class OwnerHomeFragment : Fragment() {
         viewModel.getOwnerById(idOwner).observe(viewLifecycleOwner){
             stand = it.stand
             owner = it
-        }
-        viewModel.getAllStand().observe(viewLifecycleOwner){
-            for (i in it){
-                if (i.id == stand){
-                    binding.apply {
-                        tvNameStand.text = i.name
-                        pagerAdapter = OwnerPagerAdapter(this@OwnerHomeFragment, i.id)
-                        vpProduct.adapter = pagerAdapter
-                        TabLayoutMediator(tabLayout, vpProduct) { tab, position ->
-                            tab.text = resources.getString(TAB_TITLES[position])
-                        }.attach()
-                        Glide.with(this@OwnerHomeFragment)
-                            .load(Const.STAND_IMAGE)
-                            .apply(RequestOptions())
-                            .into(imgStand)
-                    }
-                }
+            binding.apply {
+                tvNameStand.text = it.name
+                pagerAdapter = OwnerPagerAdapter(this@OwnerHomeFragment, it.stand)
+                vpProduct.adapter = pagerAdapter
+                TabLayoutMediator(tabLayout, vpProduct) { tab, position ->
+                    tab.text = resources.getString(TAB_TITLES[position])
+                }.attach()
+                Glide.with(this@OwnerHomeFragment)
+                    .load(Const.STAND_IMAGE)
+                    .apply(RequestOptions())
+                    .into(imgStand)
             }
         }
+
+
         binding.fabAdd.setOnClickListener{
             val intent = Intent(activity, AddProductActivity::class.java)
             intent.putExtra(EXTRA_OWNER, owner)

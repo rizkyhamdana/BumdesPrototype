@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.rizkyhamdana.bumdesprototype.data.OrderResponse
-import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
 

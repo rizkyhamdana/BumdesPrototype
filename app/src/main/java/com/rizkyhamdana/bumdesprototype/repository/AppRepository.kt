@@ -16,7 +16,6 @@ class AppRepository(private val appDao: AppDao) {
 
     private val listOwner = MutableLiveData<List<OwnerResponse>>()
     private val listUser = MutableLiveData<List<UserResponse>>()
-    private val listStand = MutableLiveData<List<StandResponse>>()
     private val listFoodPopular = MutableLiveData<List<ProdukResponse>>()
     private val listDrinkPopular = MutableLiveData<List<ProdukResponse>>()
     private val listSnackPopular = MutableLiveData<List<ProdukResponse>>()
@@ -177,25 +176,7 @@ class AppRepository(private val appDao: AppDao) {
         return listSnackPopular
     }
 
-    fun getAllStand(): LiveData<List<StandResponse>>{
-        val stands = ArrayList<StandResponse>()
-        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
-        firebaseDb.getReference("stand")
-            .addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (i in snapshot.children) {
-                        val stand = i.getValue(StandResponse::class.java) as StandResponse
-                        stands.add(stand)
-                        listStand.postValue(stands)
-                    }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                }
-
-            })
-        return listStand
-    }
 
     fun getFoodbyStand(stand: String): LiveData<List<ProdukResponse>>{
         val foods = ArrayList<ProdukResponse>()

@@ -60,20 +60,40 @@
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/menu/cart_menu.xml" value="0.24583333333333332" />
         <entry key="..\:/Android Project/BumdesPrototype/app/src/main/res/menu/home_menu.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_add_product.xml" value="0.33" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_cart.xml" value="0.25" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_chat.xml" value="0.18802083333333333" />
-        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_checkout.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_checkout.xml" value="0.25" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_history.xml" value="0.25" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_owner_history.xml" value="0.18802083333333333" />
-        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_product.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_product.xml" value="0.22" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_detail_stand.xml" value="0.33" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_edit.xml" value="0.25" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_intro.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_owner.xml" value="0.358695652173913" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/activity_splashscreen.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_history.xml" value="0.18802083333333333" />
-        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_login.xml" value="0.18802083333333333" />
-        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_message.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_message.xml" value="0.25" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_history.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_home.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_message.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_owner_profile.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_profile.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/list_cart.xml" value="0.5" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/list_chat.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/list_order.xml" value="0.5" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/list_product.xml" value="0.5" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/list_shop.xml" value="0.2" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/no_data.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/no_internet.xml" value="0.33" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/layout/no_internet_appbar.xml" value="0.18802083333333333" />
         <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/menu/add_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2995" />
+        <entry key="..\:/Skripsi/BumdesPrototype/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.196" />
       </map>
     </option>
   </component>

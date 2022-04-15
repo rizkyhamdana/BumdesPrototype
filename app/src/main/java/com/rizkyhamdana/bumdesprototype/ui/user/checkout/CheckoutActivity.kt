@@ -48,7 +48,8 @@ class CheckoutActivity : AppCompatActivity() {
             tvName.text = user.name
             tvAddress.text = user.address
             tvNumber.text = user.number
-            tvTotal.text = "Rp $totalBayar"
+            tvTotal.text = Const.moneyNumber(totalBayar)
+
         }
         binding.btnConfirmOrder.setOnClickListener {
             val id = binding.radioGroup.checkedRadioButtonId
@@ -69,6 +70,12 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     private fun sendOrder(user: UserResponse, totalBayar: Int, stand: String, details: String, radioString: String) {

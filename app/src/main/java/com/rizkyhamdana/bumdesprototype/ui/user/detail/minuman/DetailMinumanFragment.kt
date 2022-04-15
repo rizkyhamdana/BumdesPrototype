@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
-import com.rizkyhamdana.bumdesprototype.data.StandResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentListProductBinding
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailProductActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity
@@ -41,11 +41,11 @@ class DetailMinumanFragment:  Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val stand = activity?.intent?.getParcelableExtra<StandResponse>(DetailStandActivity.EXTRA_STAND) as StandResponse
+        val stand = activity?.intent?.getParcelableExtra<OwnerResponse>(DetailStandActivity.EXTRA_STAND) as OwnerResponse
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
         idUser = mAuth.currentUser?.uid as String
-        homeViewModel.getDrinkbyStand(stand.id).observe(viewLifecycleOwner) { produk ->
+        homeViewModel.getDrinkbyStand(stand.stand).observe(viewLifecycleOwner) { produk ->
             adapter.setProduk(produk)
         }
         adapter.setOnItemClickCallback(object : ListProdukAdapter.OnItemClickCallback {

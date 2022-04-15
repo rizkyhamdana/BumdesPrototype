@@ -2,16 +2,18 @@ package com.rizkyhamdana.bumdesprototype.ui.user.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListProductBinding
 import com.rizkyhamdana.bumdesprototype.util.Const
+import com.rizkyhamdana.bumdesprototype.util.ProductDiffutil
 
 class ListProdukAdapter:
     RecyclerView.Adapter<ListProdukAdapter.ViewHolder>() {
-    private var listProduk = ArrayList<ProdukResponse>()
+    private var listProduk = emptyList<ProdukResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -22,10 +24,12 @@ class ListProdukAdapter:
         fun onItemClicked(data: ProdukResponse)
     }
 
-    fun setProduk(listProduk: List<ProdukResponse>) {
-        this.listProduk.clear()
-        this.listProduk.addAll(listProduk)
-        notifyDataSetChanged()
+    fun setProduk(newList: List<ProdukResponse>) {
+        val diffutils = ProductDiffutil(listProduk, newList)
+        val diffResult = DiffUtil.calculateDiff(diffutils)
+        listProduk = newList
+        diffResult.dispatchUpdatesTo(this)
+
     }
 
     inner class ViewHolder(private val binding: ListProductBinding) :
@@ -33,7 +37,7 @@ class ListProdukAdapter:
         fun bind(produkEntity: ProdukResponse) {
             with(binding) {
                 tvNameProduk.text = produkEntity.name
-                tvPrice.text = "Rp. ${produkEntity.price}"
+                tvPrice.text =  Const.moneyNumber(produkEntity.price)
                 Glide.with(itemView.context)
                     .load(
                         Const.FOOD_IMAGE

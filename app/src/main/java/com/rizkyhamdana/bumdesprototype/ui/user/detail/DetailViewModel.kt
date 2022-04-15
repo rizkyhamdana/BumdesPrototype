@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
+import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
 import com.rizkyhamdana.bumdesprototype.data.local.Checkout
 import com.rizkyhamdana.bumdesprototype.repository.AppRepository
@@ -20,6 +21,8 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
         appRepository = AppRepository(appDao)
     }
 
+
+    fun getUserbyId(id: String): LiveData<UserResponse> = appRepository.getUserbyid(id)
 
     fun getFoodbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getFoodbyStand(stand)
     fun getDrinkbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getDrinkbyStand(stand)

@@ -32,7 +32,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_satu"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_address"
         app:layout_constraintStart_toStartOf="@+id/tv_title_address"
@@ -48,10 +48,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +72,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/v_line"
                 tools:text="0895339332344" />
@@ -94,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_name"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
@@ -178,7 +174,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/total"
-        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirm_order"
         app:layout_constraintStart_toStartOf="@+id/btn_confirm_order" />
 
@@ -189,7 +184,6 @@
         android:layout_marginBottom="10dp"
         android:textColor="@color/black"
         tools:text="Rp. 20000"
-        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirm_order"
         app:layout_constraintEnd_toEndOf="@+id/btn_confirm_order" />
@@ -200,7 +194,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:background="@drawable/button_shape"
-        android:text="@string/selesaikan_pembayaran"
+        android:text="@string/selesaikan_pemesanan"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

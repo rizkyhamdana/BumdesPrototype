@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rizkyhamdana.bumdesprototype.R
-import com.rizkyhamdana.bumdesprototype.data.StandResponse
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ActivityDetailStandBinding
 import com.rizkyhamdana.bumdesprototype.util.Const
 
@@ -33,7 +33,7 @@ class DetailStandActivity : AppCompatActivity() {
         title =  "Detail"
 
 
-        val data = intent.getParcelableExtra<StandResponse>(EXTRA_STAND) as StandResponse
+        val data = intent.getParcelableExtra<OwnerResponse>(EXTRA_STAND) as OwnerResponse
         setLayout(data)
 
         pagerAdapter = DetailPagerAdapter(this)
@@ -48,7 +48,13 @@ class DetailStandActivity : AppCompatActivity() {
 
     }
 
-    private fun setLayout(data: StandResponse) {
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+
+    private fun setLayout(data: OwnerResponse) {
         binding.apply {
             tvNameStand.text = data.name
             Glide.with(this@DetailStandActivity)

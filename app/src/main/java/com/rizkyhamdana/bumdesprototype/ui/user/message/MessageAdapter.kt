@@ -2,17 +2,19 @@ package com.rizkyhamdana.bumdesprototype.ui.user.message
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListChatBinding
 import com.rizkyhamdana.bumdesprototype.util.Const
+import com.rizkyhamdana.bumdesprototype.util.UserMessageDiffutil
 
 class MessageAdapter:
     RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
 
-    private var listOwner = ArrayList<OwnerResponse>()
+    private var listOwner = emptyList<OwnerResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -23,10 +25,11 @@ class MessageAdapter:
         fun onItemClicked(data: OwnerResponse)
     }
 
-    fun setList(listOwner: List<OwnerResponse>) {
-        this.listOwner.clear()
-        this.listOwner.addAll(listOwner)
-        notifyDataSetChanged()
+    fun setList(newList: List<OwnerResponse>){
+        val diffutils = UserMessageDiffutil(listOwner, newList)
+        val diffResult = DiffUtil.calculateDiff(diffutils)
+        listOwner = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(private val binding: ListChatBinding) :

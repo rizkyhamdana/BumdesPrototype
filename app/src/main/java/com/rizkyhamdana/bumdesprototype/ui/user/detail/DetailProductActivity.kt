@@ -1,8 +1,8 @@
 package com.rizkyhamdana.bumdesprototype.ui.user.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -77,10 +77,16 @@ class DetailProductActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+
     private fun setLayout(data: ProdukResponse) {
         binding.apply {
             tvNameProduk.text = data.name
-            tvPrice.text = "Rp ${data.price}"
+            tvPrice.text = Const.moneyNumber(data.price)
             tvStandName.text = data.stand
             Glide.with(this@DetailProductActivity)
                 .load(

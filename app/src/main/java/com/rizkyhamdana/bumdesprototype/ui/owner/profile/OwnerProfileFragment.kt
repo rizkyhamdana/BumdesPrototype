@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentOwnerProfileBinding
 import com.rizkyhamdana.bumdesprototype.ui.login.LoginActivity
+import com.rizkyhamdana.bumdesprototype.ui.owner.edit.OwnerEditActivity
 import com.rizkyhamdana.bumdesprototype.util.Const
 
 
@@ -51,11 +52,13 @@ class OwnerProfileFragment : Fragment() {
                     .load(Const.PROFILE_IMAGE)
                     .apply(RequestOptions())
                     .into(imgProfile)
+                btnEdit.setOnClickListener{ _ ->
+                    val intent = Intent(activity, OwnerEditActivity::class.java)
+                    intent.putExtra(OwnerEditActivity.EXTRA_PROFILE, it)
+                    startActivity(intent)
+                }
             }
         }
-
-
-
         binding.btnLogout.setOnClickListener {
             mAuth.signOut()
             startActivity(Intent(activity, LoginActivity::class.java))

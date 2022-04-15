@@ -3,15 +3,17 @@ package com.rizkyhamdana.bumdesprototype.ui.user.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.data.OrderResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListOrderBinding
+import com.rizkyhamdana.bumdesprototype.util.OrderDiffutil
 
 class HistoryAdapter:
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private var listOrder = ArrayList<OrderResponse>()
+    private var listOrder = emptyList<OrderResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -22,10 +24,11 @@ class HistoryAdapter:
         fun onItemClicked(data: OrderResponse)
     }
 
-    fun setOrder(listOrder: List<OrderResponse>) {
-        this.listOrder.clear()
-        this.listOrder.addAll(listOrder)
-        notifyDataSetChanged()
+    fun setOrder(newList: List<OrderResponse>) {
+        val diffutils = OrderDiffutil(listOrder, newList)
+        val diffResult = DiffUtil.calculateDiff(diffutils)
+        listOrder = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(private val binding: ListOrderBinding) :
@@ -34,12 +37,16 @@ class HistoryAdapter:
             with(binding) {
                 tvNameProduk.text = orderEntity.details
                 tvDate.text = orderEntity.date
-                if (orderEntity.status == 0){
-                    tvStatus.text = itemView.context.getString(R.string.menunggu)
-                }else if (orderEntity.status == 1){
-                    tvStatus.text = itemView.context.getString(R.string.diproses)
-                }else{
-                    tvStatus.text = itemView.context.getString(R.string.selesai)
+                when (orderEntity.status) {
+                    0 -> {
+                        tvStatus.text = itemView.context.getString(R.string.menunggu)
+                    }
+                    1 -> {
+                        tvStatus.text = itemView.context.getString(R.string.diproses)
+                    }
+                    else -> {
+                        tvStatus.text = itemView.context.getString(R.string.selesai)
+                    }
                 }
             }
         }

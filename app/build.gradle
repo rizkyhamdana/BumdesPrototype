@@ -13,8 +13,8 @@ android {
         applicationId "com.rizkyhamdana.bumdesprototype"
         minSdk 23
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -90,4 +90,6 @@ dependencies {
     //Chat UI
     implementation 'com.github.timigod:android-chat-ui:v0.1.4'
 
+    //Lottie
+    implementation "com.airbnb.android:lottie:5.0.3"
 }

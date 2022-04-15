@@ -52,6 +52,11 @@ class DetailOwnerHistoryActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun setLayout(data: OrderResponse, status: Int) {
         binding.apply {
             tvName.text = data.name
@@ -59,7 +64,7 @@ class DetailOwnerHistoryActivity : AppCompatActivity() {
             tvAddress.text = data.address
             tvPesanan.text = data.details
             tvDate.text = data.date
-            tvBayar.text = "Rp. ${data.pay}"
+            tvBayar.text = Const.moneyNumber(data.pay)
         }
         when (status) {
             0 -> {

@@ -47,7 +47,7 @@
     <string name="metode_pemesanan">Metode Pemesanan</string>
     <string name="ambil_di_tempat">Ambil di tempat</string>
     <string name="pesan_antar">Pesan Antar</string>
-    <string name="selesaikan_pembayaran">Selesaikan Pembayaran</string>
+    <string name="selesaikan_pemesanan">Selesaikan pemesanan</string>
     <string name="total">Total</string>
     <string name="checkout">Checkout</string>
     <string name="detail">Detail</string>
@@ -69,5 +69,11 @@
     <string name="tambah">Tambah</string>
     <string name="kategori">Kategori</string>
     <string name="status2">Status</string>
+    <string name="no_internet_connection">Koneksi internetmu bermasalah!</string>
+    <string name="no_internet_desc">Yuk, pastikan internetmu lancar dengan cek ulang paket data, WiFi, atau jaringan ditempatmu</string>
+    <string name="coba_lagi">Coba lagi</string>
+
+    <string name="simpan_perubahan">Simpan perubahan</string>
+    <string name="name">Nama</string>
 
 </resources>

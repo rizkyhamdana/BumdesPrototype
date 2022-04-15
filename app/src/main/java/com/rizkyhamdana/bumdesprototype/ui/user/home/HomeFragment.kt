@@ -9,13 +9,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.R
-import com.rizkyhamdana.bumdesprototype.data.StandResponse
-import com.rizkyhamdana.bumdesprototype.data.UserResponse
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
 import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity
-import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity.Companion.EXTRA_USER
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity.Companion.EXTRA_STAND
 import com.rizkyhamdana.bumdesprototype.ui.user.home.adapter.ListKedaiAdapter
@@ -26,8 +23,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pagerAdapter: HomePagerAdapter
     private lateinit var vpAdapter: ListKedaiAdapter
-    private lateinit var mAuth : FirebaseAuth
-    private var userResponse = UserResponse()
 
 
     private lateinit var homeViewModel: HomeViewModel
@@ -55,12 +50,6 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
         pagerAdapter = HomePagerAdapter(this)
-        mAuth = FirebaseAuth.getInstance()
-        val idUser = mAuth.currentUser?.uid as String
-        homeViewModel.getUserbyId(idUser).observe(viewLifecycleOwner){
-            userResponse = it
-
-        }
         vpAdapter = ListKedaiAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -69,7 +58,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            homeViewModel.getAllStand().observe(viewLifecycleOwner){ stand ->
+            homeViewModel.getAllOwner().observe(viewLifecycleOwner){ stand ->
                 vpShop.adapter = vpAdapter
                 vpAdapter.setKedai(stand)
                 indicator.setViewPager(vpShop)
@@ -79,7 +68,7 @@ class HomeFragment : Fragment() {
                 tab.text = resources.getString(TAB_TITLES[position])
             }.attach()
             vpAdapter.setOnItemClickCallback(object : ListKedaiAdapter.OnItemClickCallback{
-                override fun onItemClicked(data: StandResponse) {
+                override fun onItemClicked(data: OwnerResponse) {
                     val intent = Intent(activity, DetailStandActivity::class.java)
                     intent.putExtra(EXTRA_STAND, data)
                     startActivity(intent)
@@ -122,7 +111,6 @@ class HomeFragment : Fragment() {
         when(item.itemId){
             R.id.menu_cart -> {
                 val intent = Intent(activity, CartActivity::class.java)
-                intent.putExtra(EXTRA_USER, userResponse)
                 startActivity(intent)
             }
         }

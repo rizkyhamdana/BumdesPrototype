@@ -2,17 +2,19 @@ package com.rizkyhamdana.bumdesprototype.ui.user.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.rizkyhamdana.bumdesprototype.data.StandResponse
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.ListShopBinding
 import com.rizkyhamdana.bumdesprototype.util.Const.STAND_IMAGE
+import com.rizkyhamdana.bumdesprototype.util.KedaiDiffutil
 
 class ListKedaiAdapter:
     RecyclerView.Adapter<ListKedaiAdapter.ViewHolder>() {
 
-    private var listKedai = ArrayList<StandResponse>()
+    private var listKedai = emptyList<OwnerResponse>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
@@ -20,17 +22,18 @@ class ListKedaiAdapter:
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: StandResponse)
+        fun onItemClicked(data: OwnerResponse)
     }
 
-    fun setKedai(listKedai: List<StandResponse>){
-        this.listKedai.clear()
-        this.listKedai.addAll(listKedai)
-        notifyDataSetChanged()
+    fun setKedai(newList: List<OwnerResponse>){
+        val diffutils = KedaiDiffutil(listKedai, newList)
+        val diffResult = DiffUtil.calculateDiff(diffutils)
+        listKedai = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(private val binding: ListShopBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(kedaiEntity: StandResponse){
+        fun bind(kedaiEntity: OwnerResponse){
             with(binding){
                 tvName.text = kedaiEntity.name
                 Glide.with(itemView.context)

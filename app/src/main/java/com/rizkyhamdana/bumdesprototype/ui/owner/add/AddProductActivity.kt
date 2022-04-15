@@ -27,6 +27,10 @@ class AddProductActivity : AppCompatActivity() {
         binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        setSupportActionBar(binding.toolBar)
+        title = "Tambah Produk"
+
         val data = intent.getParcelableExtra<OwnerResponse>(EXTRA_OWNER) as OwnerResponse
 
         binding.btnAdd.setOnClickListener {
@@ -63,6 +67,11 @@ class AddProductActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
     private fun sendProduct(data: OwnerResponse, name: String, price: String, radioString: String) {

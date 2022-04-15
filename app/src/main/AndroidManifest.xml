@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rizkyhamdana.bumdesprototype">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,32 +14,71 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BumdesPrototype">
         <activity
+            android:name=".ui.user.edit.EditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity
+            android:name=".ui.owner.edit.OwnerEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity
             android:name=".ui.owner.history.DetailOwnerHistoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.owner.OwnerActivity"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".ui.owner.message.OwnerChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.owner.OwnerActivity"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".ui.user.history.DetailHistoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.message.chat.ChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".ui.owner.add.AddProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.owner.OwnerActivity"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.detail.DetailStandActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.detail.DetailProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.checkout.CheckoutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.cart.CartActivity"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.user.cart.CartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.user.MainActivity"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".ui.owner.OwnerActivity"
             android:exported="false"
