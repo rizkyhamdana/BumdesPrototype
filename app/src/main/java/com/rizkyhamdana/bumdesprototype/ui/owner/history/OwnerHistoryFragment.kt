@@ -43,9 +43,13 @@ class OwnerHistoryFragment : Fragment() {
         val id = mAuth.currentUser?.uid as String
         historyViewModel.getOwnerById(id).observe(viewLifecycleOwner){
             historyViewModel.getAllOrderbyStand(it.stand).observe(viewLifecycleOwner){ order ->
-                binding.rvOrders.adapter = adapter
-                binding.rvOrders.layoutManager = LinearLayoutManager(context)
-                adapter.setOrder(order)
+                if (order.isEmpty()){
+                    binding.layoutNodata.root.visibility = View.VISIBLE
+                }else{
+                    binding.rvOrders.adapter = adapter
+                    binding.rvOrders.layoutManager = LinearLayoutManager(context)
+                    adapter.setOrder(order)
+                }
             }
         }
 

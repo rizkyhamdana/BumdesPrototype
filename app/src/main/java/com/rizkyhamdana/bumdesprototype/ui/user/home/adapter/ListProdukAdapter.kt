@@ -40,7 +40,7 @@ class ListProdukAdapter:
                 tvPrice.text =  Const.moneyNumber(produkEntity.price)
                 Glide.with(itemView.context)
                     .load(
-                        Const.FOOD_IMAGE
+                        produkEntity.imageUrl
                     )
                     .apply(RequestOptions())
                     .into(imgProduk)

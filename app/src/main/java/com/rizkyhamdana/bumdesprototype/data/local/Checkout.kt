@@ -9,6 +9,7 @@ data class Checkout (
     val id: String,
     val idStand: String,
     val idUser: String,
+    val imgUrl: String,
     val name: String,
     val quantity: Int,
     val total: Int,

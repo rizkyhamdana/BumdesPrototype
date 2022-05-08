@@ -60,6 +60,7 @@ class DetailProductActivity : AppCompatActivity() {
                     data.id,
                     data.idStand,
                     idUser,
+                    data.imageUrl,
                     data.name,
                     qtyNow,
                     subTotal
@@ -90,7 +91,7 @@ class DetailProductActivity : AppCompatActivity() {
             tvStandName.text = data.stand
             Glide.with(this@DetailProductActivity)
                 .load(
-                    Const.FOOD_IMAGE
+                    data.imageUrl
                 )
                 .apply(RequestOptions())
                 .into(imgProduk)

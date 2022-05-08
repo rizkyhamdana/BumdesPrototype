@@ -1,11 +1,23 @@
 package com.rizkyhamdana.bumdesprototype.ui.owner.add
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.webkit.MimeTypeMap
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.github.razir.progressbutton.bindProgressButton
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
@@ -17,9 +29,28 @@ class AddProductActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddProductBinding
     private var radioString: String = " "
+    private var imageUri : Uri? = null
 
     companion object{
         const val EXTRA_OWNER = "extra_owner"
+    }
+
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val data: Intent? = result.data
+        when (result.resultCode) {
+            Activity.RESULT_OK -> {
+                // There are no request codes
+                val uri: Uri = data?.data!!
+                imageUri = uri
+                binding.imgProduk.setImageURI(uri)
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "Dibatalkan.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +64,40 @@ class AddProductActivity : AppCompatActivity() {
 
         val data = intent.getParcelableExtra<OwnerResponse>(EXTRA_OWNER) as OwnerResponse
 
+        Glide.with(this)
+            .load(Const.FOOD_IMAGE)
+            .apply(RequestOptions())
+            .into(binding.imgProduk)
+
+        binding.fabUpload.setOnClickListener {
+            ImagePicker.with(this)
+                .compress(1024)
+                .cropSquare()//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)
+                .galleryMimeTypes(  //Exclude gif images
+                    mimeTypes = arrayOf(
+                        "image/png",
+                        "image/jpg",
+                        "image/jpeg"
+                    )
+                )//Final image resolution will be less than 1080 x 1080(Optional)
+                .createIntent { intent ->
+                    resultLauncher.launch(intent)
+                }
+        }
+
+        bindProgressButton(binding.btnAdd)
+
         binding.btnAdd.setOnClickListener {
+            binding.btnAdd.showProgress {
+                buttonTextRes = R.string.loading
+                progressColor = Color.WHITE
+            }
             val id = binding.radioGroup.checkedRadioButtonId
             when{
+                imageUri == null -> {
+                    Toast.makeText(this, "Upload gambar produk terlebih dahulu.", Toast.LENGTH_SHORT).show()
+                }
                 TextUtils.isEmpty(binding.etName.text.toString().trim{ it <= ' '})-> {
                     binding.etName.error = "Nama produk tidak boleh kosong"
                 }
@@ -57,10 +119,8 @@ class AddProductActivity : AppCompatActivity() {
                             "snack"
                         }
                     }
-                    sendProduct(data, name, price, radioString)
-                    Toast.makeText(this, "Produk berhasil ditambahlam", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, OwnerActivity::class.java))
-                    finish()
+                    sendProduct(data, name, price, radioString, imageUri!!)
+
                 }
                 else -> {
                     Toast.makeText(this, "Pilih kategori terlebih dahulu", Toast.LENGTH_SHORT).show()
@@ -74,19 +134,47 @@ class AddProductActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun sendProduct(data: OwnerResponse, name: String, price: String, radioString: String) {
+    private fun sendProduct(data: OwnerResponse, name: String, price: String, radioString: String, imageUri: Uri) {
         val firebaseDb = FirebaseDatabase.getInstance(Const.BASE_URL)
         val reference = firebaseDb.getReference("stand")
         val child = reference.child(data.stand).child(radioString)
         val id = child.push().key as String
-        val produkResponse = ProdukResponse(
-            name,
-            data.stand,
-            id,
-            data.name,
-            price.toInt()
-        )
-        child.child(id).setValue(produkResponse)
+        val firebaseStorage = FirebaseStorage.getInstance().reference.child(data.stand)
+        val fileRef = firebaseStorage.child("${System.currentTimeMillis()}.${getFileExt(imageUri)}")
+        fileRef.putFile(imageUri).addOnSuccessListener {
+            fileRef.downloadUrl.addOnSuccessListener { imageUri ->
+                val imageUrl = imageUri.toString()
+                val produkResponse = ProdukResponse(
+                    name,
+                    data.stand,
+                    imageUrl,
+                    id,
+                    data.name,
+                    price.toInt()
+                )
+                child.child(id).setValue(produkResponse)
+                Toast.makeText(
+                    this@AddProductActivity,
+                    "Produk berhasil ditambahkan.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.btnAdd.hideProgress(R.string.berhasil)
+                startActivity(Intent(this@AddProductActivity, OwnerActivity::class.java))
+                finish()
+            }
+        }.addOnFailureListener {
+
+            binding.btnAdd.hideProgress(R.string.gagal)
+            Toast.makeText(
+                this@AddProductActivity,
+                "Produk gagal ditambahkan.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun getFileExt(imageUri: Uri): String {
+        return MimeTypeMap.getFileExtensionFromUrl(imageUri.toString())
     }
 
 

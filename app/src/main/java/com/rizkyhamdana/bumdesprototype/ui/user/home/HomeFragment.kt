@@ -4,14 +4,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rizkyhamdana.bumdesprototype.R
 import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentHomeBinding
+import com.rizkyhamdana.bumdesprototype.ui.search.SearchActivity
+import com.rizkyhamdana.bumdesprototype.ui.search.SearchActivity.Companion.EXTRA_QUERY
 import com.rizkyhamdana.bumdesprototype.ui.user.cart.CartActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity
 import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailStandActivity.Companion.EXTRA_STAND
@@ -89,13 +93,19 @@ class HomeFragment : Fragment() {
         val searchItem = menu.findItem(R.id.menu_search)
         val searchView : SearchView = searchItem.actionView as SearchView
         searchView.findViewById<View>(androidx.appcompat.R.id.search_plate).setBackgroundColor(Color.TRANSPARENT)
+        searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn).setImageResource(R.drawable.ic_baseline_close_24)
+        searchView.findViewById<SearchView.SearchAutoComplete>(androidx.appcompat.R.id.search_src_text).setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.blue))
         searchView.queryHint = "Cari makanan...."
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
                 searchView.setQuery(query, false)
-                Toast.makeText(activity, "Looking for $query", Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, SearchActivity::class.java)
+                intent.putExtra(EXTRA_QUERY, query)
+                startActivity(intent)
                 return true
             }
 

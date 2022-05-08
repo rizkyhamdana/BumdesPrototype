@@ -22,12 +22,16 @@ class AppRepository(private val appDao: AppDao) {
     private val listFood = MutableLiveData<List<ProdukResponse>>()
     private val listDrink = MutableLiveData<List<ProdukResponse>>()
     private val listSnack = MutableLiveData<List<ProdukResponse>>()
+    private val listFoodSearch = MutableLiveData<List<ProdukResponse>>()
+    private val listDrinkSearch = MutableLiveData<List<ProdukResponse>>()
+    private val listSnackSearch = MutableLiveData<List<ProdukResponse>>()
     private val listOrder = MutableLiveData<List<OrderResponse>>()
     private val listOwnerOrder = MutableLiveData<List<OrderResponse>>()
     private val listChat = MutableLiveData<List<ChatResponse>>()
     private val listChatUser = MutableLiveData<List<String>>()
     private val user = MutableLiveData<UserResponse>()
     private val owner = MutableLiveData<OwnerResponse>()
+    private val ownerDetail = MutableLiveData<OwnerResponse>()
 
     fun getAllOwner(): LiveData<List<OwnerResponse>> {
         val owners = ArrayList<OwnerResponse>()
@@ -112,6 +116,28 @@ class AppRepository(private val appDao: AppDao) {
             })
         return owner
     }
+
+    fun getOwnerByStand(stand: String): LiveData<OwnerResponse>{
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("account")
+            .child("owner")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        val accountOwner = i.getValue(OwnerResponse::class.java) as OwnerResponse
+                        if (stand == accountOwner.stand){
+                            ownerDetail.postValue(accountOwner)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+        return ownerDetail
+    }
+
 
     fun getFoodPopular(): LiveData<List<ProdukResponse>>{
         val foods = ArrayList<ProdukResponse>()
@@ -200,6 +226,30 @@ class AppRepository(private val appDao: AppDao) {
         return listFood
     }
 
+    fun getFoodbyQuery(query: String): LiveData<List<ProdukResponse>>{
+        val foods = ArrayList<ProdukResponse>()
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("popular")
+            .child("food")
+            .orderByChild("name").startAt(query).endAt(query + "\uf8ff").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        val food = i.getValue(ProdukResponse::class.java) as ProdukResponse
+                        foods.add(food)
+                        listFoodSearch.postValue(foods)
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+        return listFoodSearch
+    }
+
+
 
     fun getDrinkbyStand(stand: String): LiveData<List<ProdukResponse>>{
         val drinks = ArrayList<ProdukResponse>()
@@ -223,6 +273,29 @@ class AppRepository(private val appDao: AppDao) {
         return listDrink
     }
 
+    fun getDrinkbyQuery(query: String): LiveData<List<ProdukResponse>>{
+        val drinks = ArrayList<ProdukResponse>()
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("popular")
+            .child("drink")
+            .orderByChild("name").startAt(query).endAt(query + "\uf8ff").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        val drink = i.getValue(ProdukResponse::class.java) as ProdukResponse
+                        drinks.add(drink)
+                        listDrinkSearch.postValue(drinks)
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+        return listDrinkSearch
+    }
+
     fun getSnackbyStand(stand: String): LiveData<List<ProdukResponse>>{
         val snacks = ArrayList<ProdukResponse>()
         val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
@@ -243,6 +316,29 @@ class AppRepository(private val appDao: AppDao) {
 
             })
         return listSnack
+    }
+
+    fun getSnackbyQuery(query: String): LiveData<List<ProdukResponse>>{
+        val snacks = ArrayList<ProdukResponse>()
+        val firebaseDb = FirebaseDatabase.getInstance(BASE_URL)
+        firebaseDb.getReference("popular")
+            .child("snack")
+            .orderByChild("name").startAt(query).endAt(query + "\uf8ff").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        val snack = i.getValue(ProdukResponse::class.java) as ProdukResponse
+                        snacks.add(snack)
+                        listSnackSearch.postValue(snacks)
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+        return listSnackSearch
     }
 
     fun getAllOrder(id: String): LiveData<List<OrderResponse>>{

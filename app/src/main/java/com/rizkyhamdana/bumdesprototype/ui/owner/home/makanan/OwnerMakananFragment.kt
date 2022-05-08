@@ -40,7 +40,11 @@ class OwnerMakananFragment(private val stand: String): Fragment() {
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
         homeViewModel.getFoodbyStand(stand).observe(viewLifecycleOwner) { produk ->
-            adapter.setProduk(produk)
+            if(produk.isEmpty()){
+                binding.layoutNodata.root.visibility = View.VISIBLE
+            }else{
+                adapter.setProduk(produk)
+            }
         }
         adapter.setOnItemClickCallback(object : ListProdukAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProdukResponse) {

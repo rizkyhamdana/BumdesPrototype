@@ -2,6 +2,7 @@ package com.rizkyhamdana.bumdesprototype.ui.user.history
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,9 +43,13 @@ class HistoryFragment : Fragment() {
         val idUser = mAuth.currentUser?.uid
 
         historyViewModel.getAllOrder(idUser!!).observe(viewLifecycleOwner){ order ->
-            binding.rvOrders.adapter = adapter
-            binding.rvOrders.layoutManager = LinearLayoutManager(context)
-            adapter.setOrder(order)
+            if (order.isNullOrEmpty()){
+                binding.layoutNodata.root.visibility = View.VISIBLE
+            }else{
+                binding.rvOrders.adapter = adapter
+                binding.rvOrders.layoutManager = LinearLayoutManager(context)
+                adapter.setOrder(order)
+            }
         }
 
 

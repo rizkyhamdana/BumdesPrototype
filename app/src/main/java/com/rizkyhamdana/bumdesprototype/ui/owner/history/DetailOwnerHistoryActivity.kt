@@ -64,6 +64,7 @@ class DetailOwnerHistoryActivity : AppCompatActivity() {
             tvAddress.text = data.address
             tvPesanan.text = data.details
             tvDate.text = data.date
+            tvMetode.text = data.methodOrder
             tvBayar.text = Const.moneyNumber(data.pay)
         }
         when (status) {

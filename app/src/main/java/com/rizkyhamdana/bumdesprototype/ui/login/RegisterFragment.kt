@@ -80,7 +80,7 @@ class RegisterFragment : Fragment() {
                                 binding.btnregister.hideProgress(R.string.berhasil)
                                 mAuth.signOut()
                             }else{
-                                Toast.makeText(context, "Gagal daftar ges", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Pendaftaran gagal. periksa kembali email anda!", Toast.LENGTH_SHORT).show()
                             }
                         }
                 }

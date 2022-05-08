@@ -10,5 +10,6 @@ data class OwnerResponse(
     var address: String = " ",
     var number: String = " ",
     var stand: String = " ",
-    var name: String = " "
+    var name: String = " ",
+    var delivery: String = " "
 ): Parcelable

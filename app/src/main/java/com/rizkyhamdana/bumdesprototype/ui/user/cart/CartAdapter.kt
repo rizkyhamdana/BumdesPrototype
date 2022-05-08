@@ -40,7 +40,7 @@ class CartAdapter:
                 tvQty.text = produkEntity.quantity.toString()
                 Glide.with(itemView.context)
                     .load(
-                        Const.FOOD_IMAGE
+                        produkEntity.imgUrl
                     )
                     .apply(RequestOptions())
                     .into(imgProduk)

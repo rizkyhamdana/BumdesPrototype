@@ -44,13 +44,18 @@ class CheckoutActivity : AppCompatActivity() {
         val stand = intent.getStringExtra(EXTRA_STAND) as String
         val details = intent.getStringExtra(EXTRA_DETAILS) as String
 
-        binding.apply {
-            tvName.text = user.name
-            tvAddress.text = user.address
-            tvNumber.text = user.number
-            tvTotal.text = Const.moneyNumber(totalBayar)
-
+        viewModel.getOwnerbyStand(stand).observe(this){
+            binding.apply {
+                tvName.text = it.name
+                tvAddress.text = user.address
+                tvNumber.text = user.number
+                tvTotal.text = Const.moneyNumber(totalBayar)
+            }
+            binding.rbDelivery.isEnabled = it.delivery != "no"
         }
+
+
+
         binding.btnConfirmOrder.setOnClickListener {
             val id = binding.radioGroup.checkedRadioButtonId
             if (id!=-1){

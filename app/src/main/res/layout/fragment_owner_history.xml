@@ -17,4 +17,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/list_order" />
 
+    <include
+        android:id="@+id/layout_nodata"
+        layout="@layout/no_data"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

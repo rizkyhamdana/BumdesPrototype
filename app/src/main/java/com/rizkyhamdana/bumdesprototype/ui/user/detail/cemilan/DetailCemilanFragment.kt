@@ -48,7 +48,14 @@ class DetailCemilanFragment: Fragment() {
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
         idUser = mAuth.currentUser?.uid as String
         homeViewModel.getSnackbyStand(stand.stand).observe(viewLifecycleOwner) { produk ->
-            adapter.setProduk(produk)
+            if(produk.isEmpty()){
+                binding.layoutNodata.root.visibility = View.VISIBLE
+                binding.rvProduct.visibility = View.GONE
+            }else{
+                binding.layoutNodata.root.visibility = View.GONE
+                binding.rvProduct.visibility = View.VISIBLE
+                adapter.setProduk(produk)
+            }
         }
         adapter.setOnItemClickCallback(object : ListProdukAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProdukResponse) {

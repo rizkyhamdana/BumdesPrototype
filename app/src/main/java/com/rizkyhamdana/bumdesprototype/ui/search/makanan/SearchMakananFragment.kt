@@ -1,5 +1,6 @@
-package com.rizkyhamdana.bumdesprototype.ui.owner.home.minuman
+package com.rizkyhamdana.bumdesprototype.ui.search.makanan
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +11,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.databinding.FragmentListProductBinding
-import com.rizkyhamdana.bumdesprototype.ui.owner.home.OwnerHomeViewModel
+import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailProductActivity
+import com.rizkyhamdana.bumdesprototype.ui.user.detail.DetailViewModel
 import com.rizkyhamdana.bumdesprototype.ui.user.home.adapter.ListProdukAdapter
 
-class OwnerMinumanFragment(private val stand: String): Fragment() {
+class SearchMakananFragment(val query : String): Fragment() {
 
     private var _binding: FragmentListProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: ListProdukAdapter
-    private lateinit var homeViewModel: OwnerHomeViewModel
-
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var homeViewModel: DetailViewModel
+    private lateinit var mAuth : FirebaseAuth
+    private var idUser: String = " "
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,26 +30,30 @@ class OwnerMinumanFragment(private val stand: String): Fragment() {
     ): View {
         // Inflate the layout for this fragment
         homeViewModel =
-            ViewModelProvider(this)[OwnerHomeViewModel::class.java]
+            ViewModelProvider(this)[DetailViewModel::class.java]
         mAuth = FirebaseAuth.getInstance()
         adapter = ListProdukAdapter()
         _binding = FragmentListProductBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvProduct.adapter = adapter
         binding.rvProduct.layoutManager = GridLayoutManager(context, 2)
-        homeViewModel.getDrinkbyStand(stand).observe(viewLifecycleOwner) { produk ->
-            if(produk.isEmpty()){
+        idUser = mAuth.currentUser?.uid as String
+        homeViewModel.getFoodbyQuery(query).observe(viewLifecycleOwner) {
+            if(it.isEmpty()){
                 binding.layoutNodata.root.visibility = View.VISIBLE
             }else{
-                adapter.setProduk(produk)
+                adapter.setProduk(it)
             }
         }
         adapter.setOnItemClickCallback(object : ListProdukAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProdukResponse) {
+                val intent = Intent(activity, DetailProductActivity::class.java)
+                intent.putExtra(DetailProductActivity.EXTRA_PRODUCT, data)
+                intent.putExtra(DetailProductActivity.EXTRA_USER, idUser)
+                startActivity(intent)
             }
 
         })

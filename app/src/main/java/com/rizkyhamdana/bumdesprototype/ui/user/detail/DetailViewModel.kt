@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.rizkyhamdana.bumdesprototype.data.OwnerResponse
 import com.rizkyhamdana.bumdesprototype.data.ProdukResponse
 import com.rizkyhamdana.bumdesprototype.data.UserResponse
 import com.rizkyhamdana.bumdesprototype.data.local.AppDatabase
@@ -24,9 +25,15 @@ class DetailViewModel(application: Application): AndroidViewModel(application) {
 
     fun getUserbyId(id: String): LiveData<UserResponse> = appRepository.getUserbyid(id)
 
+    fun getOwnerbyStand(stand: String): LiveData<OwnerResponse> = appRepository.getOwnerByStand(stand)
+
     fun getFoodbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getFoodbyStand(stand)
     fun getDrinkbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getDrinkbyStand(stand)
     fun getSnackbyStand(stand: String): LiveData<List<ProdukResponse>> = appRepository.getSnackbyStand(stand)
+
+    fun getFoodbyQuery(query: String): LiveData<List<ProdukResponse>> = appRepository.getFoodbyQuery(query)
+    fun getDrinkbyQuery(query: String): LiveData<List<ProdukResponse>> = appRepository.getDrinkbyQuery(query)
+    fun getSnackbyQuery(query: String): LiveData<List<ProdukResponse>> = appRepository.getSnackbyQuery(query)
 
     fun insertCheckout(checkout: Checkout){
         viewModelScope.launch(Dispatchers.IO) {

@@ -1,5 +1,6 @@
 package com.rizkyhamdana.bumdesprototype.ui.login
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.github.razir.progressbutton.bindProgressButton
@@ -83,7 +85,7 @@ class LoginFragment : Fragment() {
                             }
                             else{
                                 binding.btnLogin.hideProgress(R.string.gagal)
-                                Toast.makeText(context, "Gagal login ges", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Gagal login, periksa kembali akun anda!", Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -92,7 +94,33 @@ class LoginFragment : Fragment() {
 
         }
         binding.tvForgotPass.setOnClickListener {
-            Toast.makeText(activity, "Anda menekan lupa password", Toast.LENGTH_SHORT).show()
+            val resetEmail = EditText(it.context)
+            val passwordResetDialog = AlertDialog.Builder(it.context)
+            passwordResetDialog.setTitle("Reset password?")
+            passwordResetDialog.setMessage("Masukkan email kamu untuk menerima link reset password!")
+            passwordResetDialog.setView(resetEmail)
+            passwordResetDialog.setPositiveButton("Reset"
+            ) { _, _ ->
+                val email = resetEmail.text.toString()
+                mAuth.sendPasswordResetEmail(email).addOnSuccessListener {
+                    Toast.makeText(
+                        context,
+                        "Link reset password terkirim ke email!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }.addOnFailureListener {
+                    Toast.makeText(
+                        context,
+                        "Link reset password gagal terkirim!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            passwordResetDialog.setNegativeButton("Batal"
+            ){ _, _ ->
+
+            }
+            passwordResetDialog.create().show()
         }
     }
 }
