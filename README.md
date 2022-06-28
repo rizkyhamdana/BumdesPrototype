@@ -9,7 +9,7 @@ This is the prototype of Android App Bumdes Rumpia
 <img src="https://user-images.githubusercontent.com/49068951/175953326-781b73e5-eef3-4e95-979c-9c91581a7ce9.png" width="200" height="400" />
 
 <p>
-<li> Halaman Untuk User
+<li> Halaman Untuk Pelanggan
 <p>
 <img src="https://user-images.githubusercontent.com/49068951/175953365-7ccd1a10-c73f-4580-8946-020eb72995fc.png" width="200" height="400" />
 <img src="https://user-images.githubusercontent.com/49068951/175953330-ca8d8c4c-3647-48bb-865f-d832e0711491.png" width="200" height="400" />
